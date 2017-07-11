@@ -1,0 +1,26 @@
+version: "3"
+services:
+  sonarr:
+    image: linuxserver/sonarr
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+    ports:
+      - "8989:8989"
+    environment:
+     - PUID=0
+     - PGID=0
+    volumes:
+      - "/app/config/sonarr:/config"
+      - "/dev/rtc:/dev/rtc:ro"
+      - "/mnt/nfs/tvshows:/mnt/nfs/tvshows"
+      - "/mnt/nfs/deluge/complete/tv:/mnt/nfs/deluge/complete/tv"
+    networks:
+      - pvrnet
+networks:
+  pvrnet:
