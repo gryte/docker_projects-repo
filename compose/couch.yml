@@ -1,0 +1,26 @@
+version: "3"
+services:
+  couchpotato:
+    image: linuxserver/couchpotato
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+    ports:
+      - "5050:5050"
+    environment:
+     - PUID=0
+     - PGID=0
+     - TZ=America/Chicago
+    volumes:
+      - "/app/config/couch:/config"
+      - "/mnt/nfs/deluge/complete/movie:/mnt/nfs/deluge/complete/movie"
+      - "/mnt/nfs/movies:/mnt/nfs/movies"
+    networks:
+      - pvrnet
+networks:
+  pvrnet:
