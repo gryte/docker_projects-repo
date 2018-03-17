@@ -1,0 +1,8 @@
+FROM jenkins/jenkins:lts
+# install nodejs, nodejs-legacy, npm, and jq
+USER root
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
+RUN apt-get update && apt-get install -y nodejs build-essential jq
+RUN apt-get install -y npm
+# drop back to the regular jenkins user - good practice
+USER jenkins
