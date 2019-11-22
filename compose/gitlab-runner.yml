@@ -11,4 +11,7 @@ services:
           cpus: "0.1"
           memory: 500M
     environment:
-     - TZ=America/Chicago
+      - TZ=America/Chicago
+    volumes:
+      - "/app/config/gitlab-runner:/etc/gitlab-runner"
+      - "/var/run/docker.sock:/var/run/docker.sock"
