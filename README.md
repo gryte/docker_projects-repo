@@ -16,6 +16,7 @@ sudo su -
 |`docker-compose --file sonarr.yml up -d`|bring up sonarr compose file in background|
 |`docker-compose --file couch.yml up -d`|bring up couch compose file in background|
 |`docker-compose --file unifi_ctrl.yml up -d`|bring up unifi controller compose file in background|
+|`docker-compose --file jackett.yml up -d jackett`|bring up jackett compose file in background|
 |`docker-compose -f <file.yml> up -d --no-deps --build`|update image and restart container in one command|
 
 # update and restart container
@@ -24,14 +25,3 @@ sudo su -
 docker-compose up -d --no-deps --build <service_name>
 ```
 
-# misc
-
-## jenkins
-
-need to ensure the volume on the host has the correct permissions for the jenkins user in the container
-
-```bash
-# set default jenkins container user:group on mapped volume
-# this happens to exist as the alinkous user:group on the host
-sudo chown 1000:1000 /app/config/jenkins
-```
